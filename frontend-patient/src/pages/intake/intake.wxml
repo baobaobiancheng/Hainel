@@ -1,0 +1,64 @@
+<view class="page">
+  <view class="header-card">
+    <text class="header-title">完善本次症状信息</text>
+    <text class="header-desc">这些信息只用于当前咨询，会和您的健康档案、上传报告一起提供给智能体分析。</text>
+  </view>
+
+  <view class="form-card card">
+    <view class="form-section-label">主要症状</view>
+    <view class="textarea-item">
+      <text class="form-label">本次主要症状</text>
+      <textarea class="form-textarea" value="{{form.main_symptom}}" placeholder="例如：胸闷、咳嗽、头痛、腹痛等" bindinput="onInput" data-field="main_symptom" auto-height />
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="form-label">持续时间</text>
+      <input class="form-input" value="{{form.duration}}" placeholder="例如：2小时、3天、反复1个月" bindinput="onInput" data-field="duration" />
+    </view>
+    <view class="divider"></view>
+    <view class="textarea-item">
+      <text class="form-label">伴随症状</text>
+      <textarea class="form-textarea" value="{{form.accompanying_symptoms}}" placeholder="例如：发热、恶心、乏力、心悸等" bindinput="onInput" data-field="accompanying_symptoms" auto-height />
+    </view>
+  </view>
+
+  <view class="form-card card">
+    <view class="form-section-label">严重程度</view>
+    <view class="form-item">
+      <text class="form-label">疼痛部位</text>
+      <input class="form-input" value="{{form.pain_location}}" placeholder="没有疼痛可不填" bindinput="onInput" data-field="pain_location" />
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="form-label">疼痛程度</text>
+      <picker range="{{painOptions}}" bindchange="onPainChange">
+        <view class="picker-value {{form.pain_level ? '' : 'picker-placeholder'}}">{{form.pain_level || '请选择'}}</view>
+      </picker>
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="form-label">是否发热</text>
+      <picker range="{{feverOptions}}" bindchange="onFeverChange">
+        <view class="picker-value {{form.fever ? '' : 'picker-placeholder'}}">{{form.fever || '请选择'}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="form-card card">
+    <view class="form-section-label">补充信息</view>
+    <view class="textarea-item">
+      <text class="form-label">近期用药</text>
+      <textarea class="form-textarea" value="{{form.recent_medication}}" placeholder="最近吃过什么药，效果如何" bindinput="onInput" data-field="recent_medication" auto-height />
+    </view>
+    <view class="divider"></view>
+    <view class="textarea-item">
+      <text class="form-label">红旗症状补充</text>
+      <textarea class="form-textarea" value="{{form.red_flag_notes}}" placeholder="是否有胸痛、呼吸困难、意识异常、剧烈头痛、出血等" bindinput="onInput" data-field="red_flag_notes" auto-height />
+    </view>
+  </view>
+
+  <view class="btn-group">
+    <button class="btn-primary save-btn" bindtap="save">保存本次问诊信息</button>
+    <button class="btn-outline reset-btn" bindtap="clear">清空</button>
+  </view>
+</view>

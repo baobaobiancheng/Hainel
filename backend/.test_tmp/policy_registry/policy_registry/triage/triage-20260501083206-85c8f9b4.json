@@ -1,0 +1,52 @@
+{
+  "policy_type": "triage",
+  "agent_type": "all",
+  "trained_at": null,
+  "feature_keys": [
+    "chief_complaint",
+    "main_symptom",
+    "red_flag_count",
+    "requires_doctor"
+  ],
+  "default_action": {
+    "action": "assign_department",
+    "requires_doctor": true,
+    "department_code": "emergency",
+    "urgency": "emergency"
+  },
+  "policy": {
+    "state_action_values": {
+      "{\"chief_complaint\": \"胸痛\", \"main_symptom\": \"胸痛\", \"red_flag_count\": 1, \"requires_doctor\": true}": {
+        "{\"action\": \"assign_department\", \"department_code\": \"emergency\", \"requires_doctor\": true, \"urgency\": \"emergency\"}": {
+          "count": 1,
+          "reward": 5.0,
+          "score": 5.0,
+          "action": {
+            "action": "assign_department",
+            "requires_doctor": true,
+            "department_code": "emergency",
+            "urgency": "emergency"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"皮疹\", \"main_symptom\": \"皮疹\", \"red_flag_count\": 0, \"requires_doctor\": false}": {
+        "{\"action\": \"assign_department\", \"department_code\": \"general\", \"requires_doctor\": false, \"urgency\": \"routine\"}": {
+          "count": 1,
+          "reward": 1.0,
+          "score": 1.0,
+          "action": {
+            "action": "assign_department",
+            "requires_doctor": false,
+            "department_code": "general",
+            "urgency": "routine"
+          }
+        }
+      }
+    }
+  },
+  "training_params": {
+    "batch_size": 32,
+    "learning_rate": 1e-05,
+    "max_epochs": 10
+  }
+}

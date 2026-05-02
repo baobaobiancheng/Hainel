@@ -1,0 +1,106 @@
+<!--pages/history/history.wxml-->
+<view class="page">
+
+  <!-- ── 搜索栏 ── -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <view class="svg-icon svg-icon--sm svg-icon--search search-icon"></view>
+      <input
+        class="search-input"
+        placeholder="搜索咨询记录..."
+        placeholder-class="search-placeholder"
+        value="{{searchText}}"
+        bindinput="onSearch"
+        confirm-type="search"
+      />
+      <view class="search-clear" wx:if="{{searchText}}" bindtap="clearSearch">
+        <text>✕</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ── 状态过滤 ── -->
+  <scroll-view class="filter-scroll" scroll-x show-scrollbar="{{false}}">
+    <view class="filter-row">
+      <view
+        class="filter-chip {{activeFilter === item.value ? 'filter-chip--active' : ''}}"
+        wx:for="{{filters}}"
+        wx:key="value"
+        bindtap="setFilter"
+        data-value="{{item.value}}"
+      >
+        <text class="filter-chip__icon">{{item.icon}}</text>
+        <text class="filter-chip__label">{{item.label}}</text>
+        <view class="filter-chip__badge" wx:if="{{item.count > 0}}">{{item.count}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- ── 会话列表 ── -->
+  <view class="conv-list" wx:if="{{conversations.length > 0}}">
+    <view
+      class="conv-card animate-in"
+      wx:for="{{conversations}}"
+      wx:key="id"
+      bindtap="openConversation"
+      data-id="{{item.id}}"
+      style="animation-delay: {{index * 0.05}}s"
+    >
+      <!-- 顶部行 -->
+      <view class="conv-card__top">
+        <view class="conv-card__status-dot conv-card__status-dot--{{item.status}}"></view>
+        <text class="conv-card__title">{{item.title || '健康咨询'}}</text>
+        <view class="badge badge-{{item.status}}">
+          <text wx:if="{{item.status === 'active'}}">进行中</text>
+          <text wx:elif="{{item.status === 'pending'}}">等待中</text>
+          <text wx:elif="{{item.status === 'completed'}}">已完成</text>
+          <text wx:else>已取消</text>
+        </view>
+      </view>
+
+      <!-- 主诉摘要 -->
+      <text class="conv-card__complaint" wx:if="{{item.chief_complaint}}">
+        💬 {{item.chief_complaint}}
+      </text>
+
+      <!-- 元信息行 -->
+      <view class="conv-card__meta">
+        <view class="conv-card__meta-item">
+          <view class="svg-icon svg-icon--xs svg-icon--chat meta-icon"></view>
+          <text class="meta-text">{{item.message_count || 0}}条消息</text>
+        </view>
+        <view class="conv-card__meta-item" wx:if="{{item.complexity_level}}">
+          <view class="svg-icon svg-icon--xs svg-icon--chart meta-icon"></view>
+          <text class="meta-text">
+            <text wx:if="{{item.complexity_level === 'low'}}">低复杂度</text>
+            <text wx:elif="{{item.complexity_level === 'medium'}}">中复杂度</text>
+            <text wx:else>高复杂度</text>
+          </text>
+        </view>
+        <text class="conv-card__time">{{item.relativeTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-wrap" wx:elif="{{!loading}}">
+    <view class="svg-icon svg-icon--2xl svg-icon--clipboard empty-icon"></view>
+    <text class="empty-title">{{searchText ? '未找到相关记录' : '暂无咨询记录'}}</text>
+    <text class="empty-desc">{{searchText ? '换个关键词试试' : '点击下方按钮开始您的第一次健康咨询'}}</text>
+    <button class="btn-primary" style="margin-top:32rpx;width:240rpx;" bindtap="startNew" wx:if="{{!searchText}}">
+      开始咨询
+    </button>
+  </view>
+
+  <!-- 加载 -->
+  <view class="loading-row" wx:if="{{loading}}">
+    <view class="loading-dots"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" bindtap="loadMore" wx:if="{{hasMore && !loading}}">
+    <text>加载更多 ↓</text>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

@@ -1,0 +1,236 @@
+/* custom-tab-bar/index.wxss */
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  /* 安全区域适配 */
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -1rpx 0 rgba(11, 148, 128, 0.08),
+              0 -8rpx 32rpx rgba(26, 46, 53, 0.08);
+  z-index: 1000;
+}
+
+.tab-bar__inner {
+  display: flex;
+  height: 100rpx;
+}
+
+/* ── 每个 Tab 项 ── */
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rpx;
+  padding: 10rpx 0;
+  position: relative;
+  transition: transform 0.15s;
+}
+
+.tab-item--active {
+  transform: translateY(-4rpx);
+}
+
+/* ── 图标区 ── */
+.tab-icon {
+  position: relative;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-wrap {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-icon {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 活跃指示点 ── */
+.active-dot {
+  position: absolute;
+  top: -4rpx;
+  right: -2rpx;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #FF7B54;
+}
+
+/* ── 标签文字 ── */
+.tab-label {
+  font-size: 20rpx;
+  color: #8AA4AC;
+  font-weight: 500;
+  transition: color 0.2s;
+  letter-spacing: 0.5rpx;
+}
+
+.tab-label--active {
+  color: #0B9480;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════
+   纯 CSS 手绘图标（非 active）
+══════════════════════════════════ */
+
+/* ── 首页图标 ── */
+.icon-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-roof {
+  width: 0;
+  height: 0;
+  border-left: 18rpx solid transparent;
+  border-right: 18rpx solid transparent;
+  border-bottom: 16rpx solid #8AA4AC;
+  transition: border-bottom-color 0.2s;
+}
+
+.home-body {
+  width: 24rpx;
+  height: 16rpx;
+  background: #8AA4AC;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0;
+  transition: background 0.2s;
+}
+
+.home-door {
+  width: 8rpx;
+  height: 10rpx;
+  background: #FFFFFF;
+  border-radius: 4rpx 4rpx 0 0;
+}
+
+/* Active 状态 */
+.svg-icon--active .home-roof  { border-bottom-color: #0B9480; }
+.svg-icon--active .home-body  { background: #0B9480; }
+
+/* ── 聊天图标 ── */
+.icon-chat {
+  position: relative;
+  width: 36rpx;
+  height: 34rpx;
+}
+
+.chat-bubble {
+  width: 36rpx;
+  height: 28rpx;
+  background: #8AA4AC;
+  border-radius: 14rpx 14rpx 14rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rpx;
+  transition: background 0.2s;
+}
+
+.chat-dot {
+  width: 5rpx;
+  height: 5rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+.chat-tail {
+  width: 0;
+  height: 0;
+  border-right: 8rpx solid #8AA4AC;
+  border-top: 0 solid transparent;
+  border-bottom: 6rpx solid transparent;
+  margin-left: 2rpx;
+  transition: border-right-color 0.2s;
+}
+
+.svg-icon--active .chat-bubble { background: #0B9480; }
+.svg-icon--active .chat-tail   { border-right-color: #0B9480; }
+
+/* ── 铃铛图标 ── */
+.icon-bell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rpx;
+}
+
+.bell-body {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 14rpx 14rpx 0 0;
+  background: #8AA4AC;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.bell-body::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -4rpx;
+  right: -4rpx;
+  height: 6rpx;
+  background: #8AA4AC;
+  border-radius: 0 0 4rpx 4rpx;
+  transition: background 0.2s;
+}
+
+.bell-clapper {
+  width: 10rpx;
+  height: 5rpx;
+  background: #8AA4AC;
+  border-radius: 0 0 5rpx 5rpx;
+  transition: background 0.2s;
+}
+
+.svg-icon--active .bell-body    { background: #0B9480; }
+.svg-icon--active .bell-body::before { background: #0B9480; }
+.svg-icon--active .bell-clapper { background: #0B9480; }
+
+/* ── 个人图标 ── */
+.icon-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.profile-head {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #8AA4AC;
+  transition: background 0.2s;
+}
+
+.profile-body {
+  width: 28rpx;
+  height: 14rpx;
+  background: #8AA4AC;
+  border-radius: 14rpx 14rpx 0 0;
+  transition: background 0.2s;
+}
+
+.svg-icon--active .profile-head { background: #0B9480; }
+.svg-icon--active .profile-body { background: #0B9480; }

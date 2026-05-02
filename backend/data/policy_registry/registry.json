@@ -1,0 +1,123 @@
+{
+  "active": {
+    "followup": "followup-20260502084928-3f3f0333"
+  },
+  "versions": {
+    "followup": [
+      {
+        "policy_type": "followup",
+        "version": "followup-20260502084928-3f3f0333",
+        "snapshot_path": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\policy_registry\\followup\\followup-20260502084928-3f3f0333.json",
+        "created_at": "2026-05-02T08:49:28Z",
+        "metrics": {
+          "policy_type": "followup",
+          "sample_count": 7,
+          "action_match_rate": 1.0,
+          "avg_reward": 3.3286,
+          "weighted_reward": 3.3286,
+          "baseline_reward": 3.3286
+        },
+        "metadata": {
+          "requested_by": 1,
+          "trained_at": "2026-05-02T08:49:28.290795"
+        }
+      },
+      {
+        "policy_type": "followup",
+        "version": "followup-20260502091400-be691b4f",
+        "snapshot_path": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\policy_registry\\followup\\followup-20260502091400-be691b4f.json",
+        "created_at": "2026-05-02T09:14:00Z",
+        "metrics": {
+          "policy_type": "followup",
+          "sample_count": 7,
+          "action_match_rate": 1.0,
+          "avg_reward": 3.3286,
+          "weighted_reward": 3.3286,
+          "baseline_reward": 3.3286
+        },
+        "metadata": {
+          "requested_by": 1,
+          "trained_at": "2026-05-02T09:14:00.234448",
+          "dataset_id": "dataset-20260502091252-b022905c"
+        }
+      }
+    ]
+  },
+  "runs": {
+    "3ac3eef5fec146858d6614b8eb45d2f0": {
+      "run_id": "3ac3eef5fec146858d6614b8eb45d2f0",
+      "policy_type": "followup",
+      "status": "completed",
+      "params": {
+        "agent_type": "pcc",
+        "batch_size": 32,
+        "learning_rate": 1e-05,
+        "max_epochs": 10
+      },
+      "created_at": "2026-05-02T08:49:28Z",
+      "updated_at": "2026-05-02T08:49:28Z",
+      "version": "followup-20260502084928-3f3f0333",
+      "metrics": {
+        "policy_type": "followup",
+        "sample_count": 7,
+        "action_match_rate": 1.0,
+        "avg_reward": 3.3286,
+        "weighted_reward": 3.3286,
+        "baseline_reward": 3.3286,
+        "policy_version": "followup-20260502084928-3f3f0333"
+      }
+    },
+    "943166c1f8f74b71a8b3d553419d4d1d": {
+      "run_id": "943166c1f8f74b71a8b3d553419d4d1d",
+      "policy_type": "followup",
+      "status": "completed",
+      "params": {
+        "agent_type": "pcc",
+        "batch_size": 32,
+        "learning_rate": 1e-05,
+        "max_epochs": 10,
+        "dataset_id": "dataset-20260502091252-b022905c"
+      },
+      "created_at": "2026-05-02T09:14:00Z",
+      "updated_at": "2026-05-02T09:14:00Z",
+      "version": "followup-20260502091400-be691b4f",
+      "metrics": {
+        "policy_type": "followup",
+        "sample_count": 7,
+        "action_match_rate": 1.0,
+        "avg_reward": 3.3286,
+        "weighted_reward": 3.3286,
+        "baseline_reward": 3.3286,
+        "policy_version": "followup-20260502091400-be691b4f"
+      },
+      "dataset_id": "dataset-20260502091252-b022905c"
+    }
+  },
+  "datasets": {
+    "dataset-20260502091252-b022905c": {
+      "dataset_id": "dataset-20260502091252-b022905c",
+      "agent_type": "pcc",
+      "policy_types": [
+        "routing",
+        "followup"
+      ],
+      "summary": {
+        "total_entries": 11,
+        "train_size": 7,
+        "val_size": 2,
+        "test_size": 2
+      },
+      "export_files": {
+        "train": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\rl_exports\\pcc_train.jsonl",
+        "val": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\rl_exports\\pcc_val.jsonl",
+        "test": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\rl_exports\\pcc_test.jsonl",
+        "export_samples": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\data\\rl_exports\\pcc_sft_samples.jsonl"
+      },
+      "created_at": "2026-05-02T09:12:52Z",
+      "created_by": 1,
+      "metadata": {
+        "limit": 1000
+      }
+    }
+  }
+}

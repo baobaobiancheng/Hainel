@@ -1,0 +1,347 @@
+/* app.wxss - 全局样式系统 */
+
+page {
+  /* ── 主色调：深青石绿 ── */
+  --c-primary:       #0B9480;
+  --c-primary-dark:  #087468;
+  --c-primary-mid:   #3DB8AA;
+  --c-primary-light: #E0F5F3;
+  --c-primary-xlight:#F0FAF9;
+
+  /* ── 强调色：暖珊瑚橙 ── */
+  --c-accent:        #FF7B54;
+  --c-accent-light:  #FFF0EB;
+  --c-accent-dark:   #E5622F;
+
+  /* ── 背景 / 卡片 ── */
+  --c-bg:            #F2F6F5;
+  --c-card:          #FFFFFF;
+  --c-overlay:       rgba(11, 148, 128, 0.06);
+
+  /* ── 文字层级 ── */
+  --c-text:          #1A2E35;
+  --c-text-2:        #4A6670;
+  --c-text-3:        #8AA4AC;
+  --c-text-inverse:  #FFFFFF;
+
+  /* ── 分隔线 ── */
+  --c-border:        #DCE9E7;
+  --c-border-light:  #EEF4F3;
+
+  /* ── 状态色 ── */
+  --c-success:       #10B981;
+  --c-success-light: #D1FAE5;
+  --c-warning:       #F59E0B;
+  --c-warning-light: #FEF3C7;
+  --c-danger:        #EF4444;
+  --c-danger-light:  #FEE2E2;
+  --c-pending:       #6366F1;
+  --c-pending-light: #EDE9FE;
+
+  /* ── 圆角 ── */
+  --r-sm:  12rpx;
+  --r-md:  20rpx;
+  --r-lg:  28rpx;
+  --r-xl:  40rpx;
+  --r-2xl: 56rpx;
+
+  /* ── 阴影 ── */
+  --shadow-sm: 0 2rpx 12rpx rgba(11, 148, 128, 0.07);
+  --shadow-md: 0 4rpx 24rpx rgba(11, 148, 128, 0.11);
+  --shadow-lg: 0 8rpx 40rpx rgba(11, 148, 128, 0.16);
+  --shadow-card: 0 1rpx 8rpx rgba(26, 46, 53, 0.05), 0 4rpx 16rpx rgba(26, 46, 53, 0.06);
+
+  /* ── 间距 ── */
+  --gap-xs:  12rpx;
+  --gap-sm:  20rpx;
+  --gap-md:  28rpx;
+  --gap-lg:  40rpx;
+  --gap-xl:  56rpx;
+
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-size: 28rpx;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+/* ── 通用卡片 ── */
+.card {
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ── 通用按钮 ── */
+.btn-primary {
+  background: var(--c-primary);
+  color: var(--c-text-inverse);
+  border-radius: var(--r-xl);
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 24rpx 48rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 20rpx rgba(11, 148, 128, 0.35);
+}
+.btn-primary::after { border: none; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--c-primary);
+  border: 2rpx solid var(--c-primary);
+  border-radius: var(--r-xl);
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 24rpx 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2rpx;
+}
+.btn-outline::after { border: none; }
+
+.btn-ghost {
+  background: var(--c-primary-light);
+  color: var(--c-primary);
+  border-radius: var(--r-xl);
+  font-size: 28rpx;
+  font-weight: 500;
+  padding: 18rpx 36rpx;
+  border: none;
+}
+.btn-ghost::after { border: none; }
+
+/* ── 标签徽章 ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 18rpx;
+  border-radius: 100rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+.badge-active   { background: var(--c-success-light); color: var(--c-success); }
+.badge-pending  { background: var(--c-pending-light); color: var(--c-pending); }
+.badge-completed{ background: var(--c-primary-light); color: var(--c-primary); }
+.badge-cancelled{ background: #F3F4F6; color: #9CA3AF; }
+
+/* ── 空状态 ── */
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+  color: var(--c-text-3);
+}
+.empty-icon { font-size: 96rpx; margin-bottom: 24rpx; }
+.empty-title { font-size: 30rpx; font-weight: 600; margin-bottom: 12rpx; color: var(--c-text-2); }
+.empty-desc  { font-size: 26rpx; text-align: center; line-height: 1.6; }
+
+/* ── 分割线 ── */
+.divider {
+  height: 1rpx;
+  background: var(--c-border-light);
+  margin: 0 30rpx;
+}
+
+/* ── 加载动画 ── */
+.loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+.loading-dots .dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--c-primary);
+  animation: dotBounce 1.4s ease-in-out infinite both;
+}
+.loading-dots .dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots .dot:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots .dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40%           { transform: scale(1.2); opacity: 1; }
+}
+
+/* ── TabBar 底部安全高度（100rpx tabBar + safe-area） ── */
+.tab-safe-padding {
+  height: calc(100rpx + env(safe-area-inset-bottom));
+}
+
+/* ── 淡入动画 ── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeSlideUp 0.3s ease-out both; }
+
+/* ════════════════════════════════════════════════════════
+   SVG 矢量图标系统（内联 data URI，无需外部资源）
+════════════════════════════════════════════════════════ */
+
+/* ── 基础类 ── */
+.svg-icon {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  flex-shrink: 0;
+  width: 36rpx;
+  height: 36rpx;
+}
+
+/* ── 尺寸变体 ── */
+.svg-icon--xs  { width: 24rpx;  height: 24rpx;  }
+.svg-icon--sm  { width: 30rpx;  height: 30rpx;  }
+.svg-icon--md  { width: 40rpx;  height: 40rpx;  }
+.svg-icon--lg  { width: 56rpx;  height: 56rpx;  }
+.svg-icon--xl  { width: 72rpx;  height: 72rpx;  }
+.svg-icon--2xl { width: 88rpx;  height: 88rpx;  }
+
+/* ── 搜索（灰色） ── */
+.svg-icon--search {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238AA4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+}
+
+/* ── 相机 ── */
+.svg-icon--camera {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z'/%3E%3Ccircle cx='12' cy='13' r='4'/%3E%3C/svg%3E");
+}
+
+/* ── 附件/回形针 ── */
+.svg-icon--attach {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48'/%3E%3C/svg%3E");
+}
+
+/* ── 上传箭头 ── */
+.svg-icon--upload {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='17 8 12 3 7 8'/%3E%3Cline x1='12' y1='3' x2='12' y2='15'/%3E%3C/svg%3E");
+}
+
+/* ── 图库 ── */
+.svg-icon--gallery {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpolyline points='21 15 16 10 5 21'/%3E%3C/svg%3E");
+}
+
+/* ── 文档/文件 ── */
+.svg-icon--file {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF7B54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E");
+}
+
+/* ── 日历 ── */
+.svg-icon--calendar {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+}
+
+/* ── 时钟 ── */
+.svg-icon--clock {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E");
+}
+
+/* ── 警告三角 ── */
+.svg-icon--warning {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EF4444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
+}
+
+/* ── 用户/人像 ── */
+.svg-icon--user {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+}
+
+/* ── 手机 ── */
+.svg-icon--phone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='2' width='14' height='20' rx='2' ry='2'/%3E%3Cline x1='12' y1='18' x2='12.01' y2='18'/%3E%3C/svg%3E");
+}
+
+/* ── 锁 ── */
+.svg-icon--lock {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+}
+
+/* ── 钥匙 ── */
+.svg-icon--key {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4'/%3E%3C/svg%3E");
+}
+
+/* ── 邮件 ── */
+.svg-icon--mail {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22 6 12 13 2 6'/%3E%3C/svg%3E");
+}
+
+/* ── 眼睛（显示密码） ── */
+.svg-icon--eye {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238AA4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+
+/* ── 眼睛划线（隐藏密码） ── */
+.svg-icon--eye-off {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238AA4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24'/%3E%3Cline x1='1' y1='1' x2='23' y2='23'/%3E%3C/svg%3E");
+}
+
+/* ── 医疗心电图（品牌 Logo，白色） ── */
+.svg-icon--medical {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E");
+}
+
+/* ── 心电图/脉搏（咨询欢迎页，primary 色） ── */
+.svg-icon--pulse {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E");
+}
+
+/* ── AI 机器人头像 ── */
+.svg-icon--robot {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='10' rx='2'/%3E%3Ccircle cx='12' cy='5' r='2'/%3E%3Cpath d='M12 7v4'/%3E%3Cline x1='8' y1='16' x2='8.01' y2='16'/%3E%3Cline x1='16' y1='16' x2='16.01' y2='16'/%3E%3C/svg%3E");
+}
+
+/* ── 聊天气泡 ── */
+.svg-icon--chat {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+}
+
+/* ── 柱状图 ── */
+.svg-icon--chart {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='20' x2='18' y2='10'/%3E%3Cline x1='12' y1='20' x2='12' y2='4'/%3E%3Cline x1='6' y1='20' x2='6' y2='14'/%3E%3C/svg%3E");
+}
+
+/* ── 剪贴板（空状态） ── */
+.svg-icon--clipboard {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238AA4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Crect x='8' y='2' width='8' height='4' rx='1' ry='1'/%3E%3C/svg%3E");
+}
+
+/* ── 铃铛（提醒空状态，灰色） ── */
+.svg-icon--bell {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238AA4AC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9'/%3E%3Cpath d='M13.73 21a2 2 0 0 1-3.46 0'/%3E%3C/svg%3E");
+}
+
+/* ── 药片（用药类型，绿色） ── */
+.svg-icon--pill {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='7' y='2' width='10' height='20' rx='5' ry='5'/%3E%3Cline x1='7' y1='12' x2='17' y2='12'/%3E%3C/svg%3E");
+}
+
+/* ── 烧杯（检查类型，蓝色） ── */
+.svg-icon--flask {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233B82F6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3h6m-5 0v6.5L5 18h14l-5-8.5V3'/%3E%3C/svg%3E");
+}
+
+/* ── 刷新/复诊（复诊类型，橙色） ── */
+.svg-icon--refresh {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F59E0B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M23 4v6h-6'/%3E%3Cpath d='M1 20v-6h6'/%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15'/%3E%3C/svg%3E");
+}
+
+/* ── 编辑 ── */
+.svg-icon--edit {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B9480' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
+}
+
+/* ── 成功勾选 ── */
+.svg-icon--check-circle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'/%3E%3Cpolyline points='22 4 12 14.01 9 11.01'/%3E%3C/svg%3E");
+}

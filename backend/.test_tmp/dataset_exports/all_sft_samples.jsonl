@@ -1,0 +1,1 @@
+{"policy_type": "routing", "prompt": "{\"policy_type\": \"routing\", \"state\": {\"chief_complaint\": \"头痛\"}}", "completion": "{\"action\": \"route_to_pcc\"}", "reward": 1.0}

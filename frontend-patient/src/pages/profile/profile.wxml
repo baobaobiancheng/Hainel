@@ -1,0 +1,86 @@
+<!--pages/profile/profile.wxml-->
+<view class="page">
+
+  <!-- ── 已登录状态 ── -->
+  <block wx:if="{{isLoggedIn && userInfo}}">
+    <!-- 头像横幅 -->
+    <view class="hero">
+      <view class="hero-bg"></view>
+      <view class="hero-inner">
+        <view class="avatar-ring" bindtap="chooseAvatar">
+          <view class="avatar-circle">
+            <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill"></image>
+            <text wx:else class="avatar-char">{{avatarChar}}</text>
+          </view>
+          <view class="avatar-edit">相机</view>
+        </view>
+        <view class="hero-info">
+          <text class="hero-name">{{userInfo.full_name || userInfo.username}}</text>
+          <text class="hero-meta" wx:if="{{userInfo.phone}}">📱 {{userInfo.phone}}</text>
+          <text class="hero-meta" wx:if="{{userInfo.email}}">✉️ {{userInfo.email}}</text>
+        </view>
+      </view>
+
+      <!-- 统计行 -->
+      <view class="stats-row">
+        <view class="stat-block">
+          <text class="stat-num">{{stats.consultations}}</text>
+          <text class="stat-label">咨询</text>
+        </view>
+        <view class="stat-sep"></view>
+        <view class="stat-block">
+          <text class="stat-num">{{stats.reports}}</text>
+          <text class="stat-label">报告</text>
+        </view>
+        <view class="stat-sep"></view>
+        <view class="stat-block">
+          <text class="stat-num">{{stats.reminders}}</text>
+          <text class="stat-label">提醒</text>
+        </view>
+        <view class="stat-sep"></view>
+        <view class="stat-block">
+          <text class="stat-num">{{stats.days}}</text>
+          <text class="stat-label">加入天数</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="menu-section">
+      <view class="menu-section__label">账号设置</view>
+      <view class="menu-group card">
+        <view
+          class="menu-item"
+          wx:for="{{settingMenus}}"
+          wx:key="title"
+          data-item="{{item}}"
+          bindtap="onMenuTap"
+        >
+          <view class="menu-item__icon-wrap" style="background: {{item.iconBg}}">
+            <text class="menu-item__icon">{{item.icon}}</text>
+          </view>
+          <text class="menu-item__title">{{item.title}}</text>
+          <text class="menu-item__arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出 -->
+    <view class="logout-wrap">
+      <button class="logout-btn" bindtap="logout">退出登录</button>
+    </view>
+  </block>
+
+  <!-- ── 未登录状态 ── -->
+  <block wx:else>
+    <view class="not-login">
+      <view class="not-login__icon">👤</view>
+      <text class="not-login__title">未登录</text>
+      <text class="not-login__desc">登录后查看您的健康记录和咨询历史</text>
+      <button class="btn-primary" style="width: 400rpx; margin-top: 40rpx;" bindtap="goLogin">
+        立即登录 / 注册
+      </button>
+    </view>
+  </block>
+
+  <view style="height: 60rpx;"></view>
+</view>

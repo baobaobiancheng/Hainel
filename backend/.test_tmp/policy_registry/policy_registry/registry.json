@@ -1,0 +1,49 @@
+{
+  "active": {
+    "triage": "triage-20260501083206-85c8f9b4"
+  },
+  "versions": {
+    "triage": [
+      {
+        "policy_type": "triage",
+        "version": "triage-20260501083206-85c8f9b4",
+        "snapshot_path": "C:\\Users\\zhenghe.bao\\Desktop\\历史项目存档\\school\\基于多智能体协同的医疗健康咨询与辅助诊断系统设计与实现\\backend\\.test_tmp\\policy_registry\\policy_registry\\triage\\triage-20260501083206-85c8f9b4.json",
+        "created_at": "2026-05-01T08:32:06Z",
+        "metrics": {
+          "policy_type": "triage",
+          "sample_count": 2,
+          "action_match_rate": 1.0,
+          "avg_reward": 3.0,
+          "weighted_reward": 3.0,
+          "baseline_reward": 3.0
+        },
+        "metadata": {}
+      }
+    ]
+  },
+  "runs": {
+    "42cd230ab2d14c29a7e2ab3e7523ab3e": {
+      "run_id": "42cd230ab2d14c29a7e2ab3e7523ab3e",
+      "policy_type": "triage",
+      "status": "completed",
+      "params": {
+        "agent_type": "all",
+        "batch_size": 32,
+        "learning_rate": 1e-05,
+        "max_epochs": 10
+      },
+      "created_at": "2026-05-01T08:32:06Z",
+      "updated_at": "2026-05-01T08:32:06Z",
+      "version": "triage-20260501083206-85c8f9b4",
+      "metrics": {
+        "policy_type": "triage",
+        "sample_count": 2,
+        "action_match_rate": 1.0,
+        "avg_reward": 3.0,
+        "weighted_reward": 3.0,
+        "baseline_reward": 3.0,
+        "policy_version": "triage-20260501083206-85c8f9b4"
+      }
+    }
+  }
+}

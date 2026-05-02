@@ -1,0 +1,12 @@
+<!--components/ChatBubble/ChatBubble.wxml-->
+<view 
+  class="chat-bubble {{isUser ? 'bubble-user' : 'bubble-assistant'}}"
+  bindtap="onTap"
+  bindlongpress="onLongPress"
+>
+  <view class="bubble-content">
+    <text class="bubble-text">{{message.content}}</text>
+    <text class="bubble-time">{{message.relativeTime || message.created_at}}</text>
+  </view>
+</view>
+

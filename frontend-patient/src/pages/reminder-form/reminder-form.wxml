@@ -1,0 +1,159 @@
+<!--pages/reminder-form/reminder-form.wxml-->
+<view class="page">
+
+  <!-- ── 类型选择 ── -->
+  <view class="section-wrap">
+    <text class="section-label">提醒类型</text>
+    <view class="type-selector">
+      <view
+        class="type-opt {{selectedType === item.value ? 'type-opt--active' : ''}}"
+        wx:for="{{typeOptions}}"
+        wx:key="value"
+        bindtap="selectType"
+        data-value="{{item.value}}"
+      >
+        <text class="type-opt__icon">{{item.icon}}</text>
+        <text class="type-opt__label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ── 基础信息 ── -->
+  <view class="section-wrap">
+    <text class="section-label">基础信息</text>
+    <view class="card form-card">
+
+      <view class="field-item">
+        <text class="field-label">提醒名称 <text class="required">*</text></text>
+        <input
+          class="field-input"
+          placeholder="例如：服用降压药"
+          placeholder-class="field-placeholder"
+          value="{{form.title}}"
+          bindinput="onInput"
+          data-field="title"
+          maxlength="50"
+        />
+      </view>
+
+      <view class="field-divider"></view>
+
+      <view class="field-item">
+        <text class="field-label">备注说明</text>
+        <textarea
+          class="field-textarea"
+          placeholder="例如：饭后半小时服用，每次1片"
+          placeholder-class="field-placeholder"
+          value="{{form.description}}"
+          bindinput="onInput"
+          data-field="description"
+          maxlength="200"
+          auto-height
+          max-height="120"
+        />
+      </view>
+
+    </view>
+  </view>
+
+  <!-- ── 时间设置 ── -->
+  <view class="section-wrap">
+    <text class="section-label">时间设置</text>
+    <view class="card form-card">
+
+      <!-- 提醒日期：使用原生日期选择器 -->
+      <picker mode="date" value="{{form.remindDate}}" start="{{todayDate}}" bindchange="onDateChange">
+        <view class="field-item field-item--picker">
+          <view class="field-item__left">
+            <view class="svg-icon svg-icon--sm svg-icon--calendar field-item__icon"></view>
+            <text class="field-label">开始日期</text>
+          </view>
+          <view class="field-item__right">
+            <text class="picker-val {{form.remindDate ? 'picker-val--set' : ''}}">
+              {{form.remindDate || '选择日期'}}
+            </text>
+            <text class="field-arrow">›</text>
+          </view>
+        </view>
+      </picker>
+
+      <view class="field-divider"></view>
+
+      <!-- 提醒时间：使用原生时间选择器 -->
+      <picker mode="time" value="{{form.remindTime}}" bindchange="onTimeChange">
+        <view class="field-item field-item--picker">
+          <view class="field-item__left">
+            <view class="svg-icon svg-icon--sm svg-icon--clock field-item__icon"></view>
+            <text class="field-label">提醒时间 <text class="required">*</text></text>
+          </view>
+          <view class="field-item__right">
+            <text class="picker-val {{form.remindTime ? 'picker-val--set' : ''}}">
+              {{form.remindTime || '选择时间'}}
+            </text>
+            <text class="field-arrow">›</text>
+          </view>
+        </view>
+      </picker>
+
+    </view>
+  </view>
+
+  <!-- ── 重复频率 ── -->
+  <view class="section-wrap">
+    <text class="section-label">重复频率</text>
+    <view class="freq-grid">
+      <view
+        class="freq-chip {{form.frequency === item.value ? 'freq-chip--active' : ''}}"
+        wx:for="{{frequencyOptions}}"
+        wx:key="value"
+        bindtap="selectFreq"
+        data-value="{{item.value}}"
+      >
+        {{item.label}}
+      </view>
+    </view>
+
+    <!-- 每周自定义 -->
+    <view class="weekday-picker" wx:if="{{form.frequency === 'weekly'}}">
+      <view
+        class="weekday-btn {{form.weekdays.indexOf(item.value) > -1 ? 'weekday-btn--active' : ''}}"
+        wx:for="{{weekdays}}"
+        wx:key="value"
+        bindtap="toggleWeekday"
+        data-value="{{item.value}}"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </view>
+
+  <!-- ── 错误提示 ── -->
+  <view class="error-tip" wx:if="{{errorMsg}}">
+    <view class="svg-icon svg-icon--sm svg-icon--warning"></view>
+    <text>{{errorMsg}}</text>
+  </view>
+
+  <!-- ── 提交 ── -->
+  <view class="submit-area">
+    <button
+      class="btn-outline cancel-btn"
+      bindtap="cancel"
+      wx:if="{{isEdit}}"
+    >删除提醒</button>
+
+    <button
+      class="btn-primary save-btn"
+      bindtap="save"
+      disabled="{{saving}}"
+    >
+      <text wx:if="{{!saving}}">{{isEdit ? '保存修改' : '添加提醒'}}</text>
+      <view class="loading-dots" wx:else>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+      </view>
+    </button>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

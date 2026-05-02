@@ -1,0 +1,101 @@
+{
+  "policy_type": "followup",
+  "agent_type": "pcc",
+  "trained_at": "2026-05-02T08:49:28.290795",
+  "feature_keys": [
+    "chief_complaint",
+    "main_symptom",
+    "round_count",
+    "previous_actions"
+  ],
+  "default_action": {
+    "action": "finish_consultation",
+    "source": "diagnosis_response"
+  },
+  "policy": {
+    "state_action_values": {
+      "{\"chief_complaint\": \"我胸口闷闷的，有点心慌，想找心内科医生看一下\", \"main_symptom\": \"\", \"previous_actions\": [], \"round_count\": 0}": {
+        "{\"action\": \"finish_consultation\", \"source\": \"diagnosis_response\"}": {
+          "count": 1,
+          "reward": 4.9,
+          "score": 4.9,
+          "action": {
+            "action": "finish_consultation",
+            "source": "diagnosis_response"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"我胸口闷闷的，四肢无力，想找心内科医生帮我看一下\", \"main_symptom\": \"\", \"previous_actions\": [], \"round_count\": 0}": {
+        "{\"action\": \"finish_consultation\", \"source\": \"diagnosis_response\"}": {
+          "count": 1,
+          "reward": 3.7,
+          "score": 3.7,
+          "action": {
+            "action": "finish_consultation",
+            "source": "diagnosis_response"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"上传报告咨询\", \"main_symptom\": \"\", \"previous_actions\": [], \"round_count\": 0}": {
+        "{\"action\": \"ask_duration\", \"source\": \"assistant_followup\"}": {
+          "count": 1,
+          "reward": 3.0,
+          "score": 3.0,
+          "action": {
+            "action": "ask_duration",
+            "source": "assistant_followup"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"上传报告咨询\", \"main_symptom\": \"\", \"previous_actions\": [\"ask_duration\"], \"round_count\": 0}": {
+        "{\"action\": \"finish_consultation\", \"source\": \"diagnosis_response\"}": {
+          "count": 1,
+          "reward": 3.0,
+          "score": 3.0,
+          "action": {
+            "action": "finish_consultation",
+            "source": "diagnosis_response"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"肚子不舒服，应该吃什么药啊\", \"main_symptom\": \"肚子不舒服\", \"previous_actions\": [], \"round_count\": 0}": {
+        "{\"action\": \"ask_duration\", \"source\": \"assistant_followup\"}": {
+          "count": 1,
+          "reward": 2.9,
+          "score": 2.9,
+          "action": {
+            "action": "ask_duration",
+            "source": "assistant_followup"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"肚子不舒服，应该吃什么药啊\", \"main_symptom\": \"肚子不舒服\", \"previous_actions\": [\"ask_duration\"], \"round_count\": 0}": {
+        "{\"action\": \"ask_duration\", \"source\": \"assistant_followup\"}": {
+          "count": 1,
+          "reward": 2.9,
+          "score": 2.9,
+          "action": {
+            "action": "ask_duration",
+            "source": "assistant_followup"
+          }
+        }
+      },
+      "{\"chief_complaint\": \"肚子不舒服，应该吃什么药啊\", \"main_symptom\": \"肚子不舒服\", \"previous_actions\": [\"ask_duration\", \"ask_duration\"], \"round_count\": 0}": {
+        "{\"action\": \"finish_consultation\", \"source\": \"diagnosis_response\"}": {
+          "count": 1,
+          "reward": 2.9,
+          "score": 2.9,
+          "action": {
+            "action": "finish_consultation",
+            "source": "diagnosis_response"
+          }
+        }
+      }
+    }
+  },
+  "training_params": {
+    "batch_size": 32,
+    "learning_rate": 1e-05,
+    "max_epochs": 10
+  }
+}

@@ -1,0 +1,113 @@
+"""
+Pydantic 模式
+定义所有请求和响应验证模式
+"""
+from app.schemas.user import (
+    UserBase,
+    UserCreate,
+    UserUpdate,
+    DoctorInfoUpdate,
+    UserResponse,
+    UserPublic,
+    UserLogin,
+    UserLoginResponse,
+    UserPasswordChange,
+    UserPasswordReset,
+)
+from app.schemas.conversation import (
+    ConversationBase,
+    ConversationCreate,
+    ConversationUpdate,
+    ConversationResponse,
+    ConversationListResponse,
+    ConversationStatusUpdate,
+    ConversationComplexityUpdate,
+    ConversationSummary,
+    DiagnosisContextConversation,
+    DiagnosisContextPatient,
+    DiagnosisContextLinkedReport,
+    DiagnosisContextKnowledgeItem,
+    DiagnosisContextKnowledgeGroup,
+    DiagnosisContextKnowledgeContext,
+    DiagnosisContextLatestDiagnosis,
+    DiagnosisContextMedicalRecord,
+    DiagnosisContextResponse,
+    MedicalRecordDraftRecord,
+    MedicalRecordDraftResponse,
+)
+from app.schemas.message import (
+    MessageBase,
+    MessageCreate,
+    MessageUpdate,
+    MessageResponse,
+    MessageListResponse,
+    MessageReadUpdate,
+    MessageSend,
+)
+from app.schemas.medical_record import (
+    MedicalRecordBase,
+    MedicalRecordCreate,
+    MedicalRecordUpdate,
+    MedicalRecordResponse,
+    MedicalRecordListResponse,
+    MedicalRecordStatusUpdate,
+    MedicalRecordReview,
+    MedicalRecordSummary,
+    DiagnosisItem,
+    MedicationItem,
+)
+
+# 导出所有模式
+__all__ = [
+    # 用户相关
+    "UserBase",
+    "UserCreate",
+    "UserUpdate",
+    "DoctorInfoUpdate",
+    "UserResponse",
+    "UserPublic",
+    "UserLogin",
+    "UserLoginResponse",
+    "UserPasswordChange",
+    "UserPasswordReset",
+    # 会话相关
+    "ConversationBase",
+    "ConversationCreate",
+    "ConversationUpdate",
+    "ConversationResponse",
+    "ConversationListResponse",
+    "ConversationStatusUpdate",
+    "ConversationComplexityUpdate",
+    "ConversationSummary",
+    "DiagnosisContextConversation",
+    "DiagnosisContextPatient",
+    "DiagnosisContextLinkedReport",
+    "DiagnosisContextKnowledgeItem",
+    "DiagnosisContextKnowledgeGroup",
+    "DiagnosisContextKnowledgeContext",
+    "DiagnosisContextLatestDiagnosis",
+    "DiagnosisContextMedicalRecord",
+    "DiagnosisContextResponse",
+    "MedicalRecordDraftRecord",
+    "MedicalRecordDraftResponse",
+    # 消息相关
+    "MessageBase",
+    "MessageCreate",
+    "MessageUpdate",
+    "MessageResponse",
+    "MessageListResponse",
+    "MessageReadUpdate",
+    "MessageSend",
+    # 病历相关
+    "MedicalRecordBase",
+    "MedicalRecordCreate",
+    "MedicalRecordUpdate",
+    "MedicalRecordResponse",
+    "MedicalRecordListResponse",
+    "MedicalRecordStatusUpdate",
+    "MedicalRecordReview",
+    "MedicalRecordSummary",
+    "DiagnosisItem",
+    "MedicationItem",
+]
+

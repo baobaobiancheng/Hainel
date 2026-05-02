@@ -1,0 +1,90 @@
+<view class="page">
+  <view class="header-tip">
+    <text class="header-tip__title">长期健康档案</text>
+    <text class="header-tip__desc">这些信息会在每次智能分析时自动带入，避免重复填写。</text>
+  </view>
+
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-dots"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+  </view>
+
+  <block wx:else>
+    <view class="form-card card">
+      <view class="form-section-label">基础信息</view>
+      <view class="form-item">
+        <text class="form-item__label">出生日期</text>
+        <picker mode="date" value="{{form.birth_date}}" bindchange="onBirthDateChange">
+          <view class="picker-value {{form.birth_date ? '' : 'picker-placeholder'}}">{{form.birth_date || '请选择出生日期'}}</view>
+        </picker>
+      </view>
+      <view class="divider"></view>
+      <view class="form-item">
+        <text class="form-item__label">性别</text>
+        <picker range="{{genderOptions}}" bindchange="onGenderChange">
+          <view class="picker-value {{form.gender ? '' : 'picker-placeholder'}}">{{form.gender || '请选择性别'}}</view>
+        </picker>
+      </view>
+      <view class="divider"></view>
+      <view class="form-grid">
+        <view class="form-item form-item--half">
+          <text class="form-item__label">身高(cm)</text>
+          <input class="form-input" type="number" value="{{form.height_cm}}" placeholder="如 175" bindinput="onInput" data-field="height_cm" />
+        </view>
+        <view class="form-item form-item--half">
+          <text class="form-item__label">体重(kg)</text>
+          <input class="form-input" type="digit" value="{{form.weight_kg}}" placeholder="如 65" bindinput="onInput" data-field="weight_kg" />
+        </view>
+      </view>
+    </view>
+
+    <view class="form-card card">
+      <view class="form-section-label">病史与风险</view>
+      <view class="textarea-item">
+        <text class="form-item__label">既往病史</text>
+        <textarea class="form-textarea" value="{{form.past_history}}" placeholder="如高血压、糖尿病、心脏病等" bindinput="onInput" data-field="past_history" auto-height />
+      </view>
+      <view class="divider"></view>
+      <view class="textarea-item">
+        <text class="form-item__label">过敏史</text>
+        <textarea class="form-textarea" value="{{form.allergies}}" placeholder="药物、食物或其他过敏" bindinput="onInput" data-field="allergies" auto-height />
+      </view>
+      <view class="divider"></view>
+      <view class="textarea-item">
+        <text class="form-item__label">长期用药</text>
+        <textarea class="form-textarea" value="{{form.long_term_medications}}" placeholder="药名、剂量、频次" bindinput="onInput" data-field="long_term_medications" auto-height />
+      </view>
+      <view class="divider"></view>
+      <view class="textarea-item">
+        <text class="form-item__label">慢性病</text>
+        <textarea class="form-textarea" value="{{form.chronic_diseases}}" placeholder="慢性病或长期随访疾病" bindinput="onInput" data-field="chronic_diseases" auto-height />
+      </view>
+    </view>
+
+    <view class="form-card card">
+      <view class="form-section-label">补充信息</view>
+      <view class="textarea-item">
+        <text class="form-item__label">家族史</text>
+        <textarea class="form-textarea" value="{{form.family_history}}" placeholder="家族遗传病、肿瘤、心脑血管疾病等" bindinput="onInput" data-field="family_history" auto-height />
+      </view>
+      <view class="divider"></view>
+      <view class="textarea-item">
+        <text class="form-item__label">手术史</text>
+        <textarea class="form-textarea" value="{{form.surgery_history}}" placeholder="手术名称和时间" bindinput="onInput" data-field="surgery_history" auto-height />
+      </view>
+      <view class="divider"></view>
+      <view class="form-item">
+        <text class="form-item__label">妊娠/哺乳状态</text>
+        <picker range="{{pregnancyOptions}}" bindchange="onPregnancyChange">
+          <view class="picker-value {{form.pregnancy_status ? '' : 'picker-placeholder'}}">{{form.pregnancy_status || '请选择'}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-error" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+
+    <view class="btn-group">
+      <button class="btn-primary save-btn" bindtap="save" disabled="{{saving}}">{{saving ? '保存中...' : '保存健康档案'}}</button>
+      <button class="btn-outline reset-btn" bindtap="reset">清空重填</button>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,203 @@
+<!--pages/consultation/consultation.wxml-->
+<view class="page">
+
+  <!-- ── 状态提示栏 ── -->
+  <view class="status-bar" wx:if="{{currentStatus !== 'idle' && currentStatus !== 'completed'}}">
+    <view class="status-dot status-dot--{{currentStatus}}"></view>
+    <text class="status-text">{{statusMessage}}</text>
+  </view>
+
+  <!-- ── 会话信息栏（有会话ID时显示） ── -->
+  <view class="conv-bar" wx:if="{{conversation}}">
+    <view class="conv-bar__info">
+      <text class="conv-bar__title">{{conversation.title || '智能健康咨询'}}</text>
+      <view class="conv-bar__status-wrap">
+        <view class="ws-dot ws-dot--{{wsConnected ? 'on' : 'off'}}"></view>
+        <text class="conv-bar__status">{{wsConnected ? '实时连接' : '连接中...'}}</text>
+      </view>
+    </view>
+    <view class="badge badge-{{conversation.status}}">
+      <text wx:if="{{conversation.status === 'active'}}">进行中</text>
+      <text wx:if="{{conversation.status === 'pending'}}">等待中</text>
+      <text wx:if="{{conversation.status === 'completed'}}">已完成</text>
+    </view>
+  </view>
+
+  <!-- ── 消息区 ── -->
+  <scroll-view
+    class="msg-scroll"
+    scroll-y
+    scroll-into-view="{{scrollTarget}}"
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <!-- 开场引导（无消息时） -->
+    <view class="welcome-wrap" wx:if="{{messages.length === 0 && !loading}}">
+      <view class="welcome-icon"><view class="svg-icon svg-icon--2xl svg-icon--pulse"></view></view>
+      <text class="welcome-title">您好，我是您的健康助手</text>
+      <text class="welcome-desc">请描述您的症状或问题，我会调用专业医学智能体为您分析</text>
+      <view class="context-card">
+        <view class="context-card__row">
+          <view class="context-card__body">
+            <text class="context-card__title">健康档案</text>
+            <text class="context-card__desc">{{healthProfileSummary || '完善后每次咨询自动带入'}}</text>
+          </view>
+          <view class="context-card__btn" bindtap="openHealthProfile">{{healthProfileSummary ? '查看' : '完善'}}</view>
+        </view>
+        <view class="context-card__row context-card__row--last">
+          <view class="context-card__body">
+            <text class="context-card__title">本次问诊信息</text>
+            <text class="context-card__desc">{{structuredIntakeSummary || '补充持续时间、伴随症状和风险提示'}}</text>
+          </view>
+          <view class="context-card__btn" bindtap="openIntake">{{structuredIntakeSummary ? '修改' : '填写'}}</view>
+        </view>
+      </view>
+      <view class="suggest-list">
+        <view class="suggest-item" wx:for="{{suggests}}" wx:key="*this" bindtap="useSuggest" data-text="{{item}}">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 消息列表 -->
+    <view class="msg-list">
+      <view
+        wx:for="{{messages}}"
+        wx:key="id"
+        id="msg-{{index}}"
+        class="msg-row msg-row--{{item.role === 'user' ? 'right' : 'left'}} animate-in"
+        style="animation-delay: {{index < 5 ? index * 0.05 : 0}}s"
+      >
+        <!-- AI 头像 -->
+        <view class="msg-avatar msg-avatar--ai" wx:if="{{item.role !== 'user'}}">
+          <view class="svg-icon svg-icon--md svg-icon--robot"></view>
+        </view>
+
+        <view class="msg-wrap">
+          <!-- 发送者标签 -->
+          <text class="msg-sender" wx:if="{{item.role !== 'user'}}">
+            {{item.agent_name || '健康助手'}}
+          </text>
+
+          <!-- 消息气泡 -->
+          <view class="bubble bubble--{{item.role === 'user' ? 'user' : 'ai'}} {{item.message_type === 'status' ? 'bubble--status bubble--status-' + item.status : ''}}">
+            <!-- 图片消息 -->
+            <image
+              wx:if="{{item.message_type === 'image' && item.file_url}}"
+              class="bubble-img"
+              src="{{item.file_url}}"
+              mode="widthFix"
+              bindtap="previewImage"
+              data-url="{{item.file_url}}"
+            />
+            <!-- 文字消息 -->
+            <rich-text
+              wx:elif="{{item.markdownHtml}}"
+              class="bubble-markdown"
+              nodes="{{item.markdownHtml}}"
+            />
+            <text class="bubble-text" wx:else selectable>{{item.content}}</text>
+          </view>
+
+          <text class="msg-time">{{item.relativeTime}}</text>
+          <view class="action-card" wx:if="{{item.actionChecklistSections && item.actionChecklistSections.length}}">
+            <text class="action-card__title">诊后行动清单</text>
+            <view class="action-section" wx:for="{{item.actionChecklistSections}}" wx:key="key" wx:for-item="section">
+              <text class="action-section__title">{{section.title}}</text>
+              <view class="action-item" wx:for="{{section.items}}" wx:key="*this" wx:for-item="actionItem">
+                <text class="action-dot"></text>
+                <text class="action-text">{{actionItem}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 用户头像 -->
+        <view class="msg-avatar msg-avatar--user" wx:if="{{item.role === 'user'}}">
+          <image wx:if="{{avatarUrl}}" class="msg-avatar__img" src="{{avatarUrl}}" mode="aspectFill"></image>
+          <text wx:else>{{avatarChar}}</text>
+        </view>
+      </view>
+
+      <!-- AI 输入中动画 -->
+      <view class="msg-row msg-row--left" wx:if="{{aiTyping}}">
+        <view class="msg-avatar msg-avatar--ai"><view class="svg-icon svg-icon--md svg-icon--robot"></view></view>
+        <view class="bubble bubble--ai">
+          <view class="loading-dots">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载历史 -->
+    <view class="loading-row" wx:if="{{loading}}">
+      <view class="loading-dots">
+        <view class="dot"></view><view class="dot"></view><view class="dot"></view>
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view id="msg-bottom" style="height: 20rpx;"></view>
+  </scroll-view>
+
+  <!-- ── 输入区 ── -->
+  <view class="input-bar {{keyboardShow ? 'input-bar--up' : ''}}">
+    <view class="pending-attachments" wx:if="{{pendingImage}}">
+      <view class="pending-image-card">
+        <image class="pending-image" src="{{pendingImage.tempPath}}" mode="aspectFill"></image>
+        <view class="pending-image__meta">
+          <text class="pending-image__name">{{pendingImage.name}}</text>
+          <text class="pending-image__hint">将随症状描述一起发送</text>
+        </view>
+        <view class="pending-image__remove" bindtap="removePendingImage">×</view>
+      </view>
+    </view>
+
+    <view class="input-row">
+      <!-- 工具按钮 -->
+      <view class="input-tools">
+        <view class="tool-btn" bindtap="chooseImage">
+          <view class="svg-icon svg-icon--sm svg-icon--camera tool-icon"></view>
+        </view>
+        <view class="tool-btn" bindtap="uploadReport">
+          <view class="svg-icon svg-icon--sm svg-icon--attach tool-icon"></view>
+        </view>
+      </view>
+
+      <view class="input-wrap">
+        <textarea
+          class="input-ta"
+          placeholder="描述您的症状..."
+          placeholder-class="input-placeholder"
+          value="{{inputText}}"
+          bindinput="onInput"
+          bindconfirm="sendMessage"
+          auto-height
+          max-height="120"
+          cursor-spacing="20"
+          bindblur="onBlur"
+          bindfocus="onFocus"
+          focus="{{inputFocus}}"
+          disabled="{{sending}}"
+          adjust-position="{{true}}"
+        />
+      </view>
+
+      <view
+        class="send-btn {{inputText.trim() ? 'send-btn--active' : 'send-btn--idle'}}"
+        bindtap="sendMessage"
+      >
+        <text wx:if="{{!sending}}">发送</text>
+        <view class="loading-dots" wx:else>
+          <view class="dot dot--white"></view>
+          <view class="dot dot--white"></view>
+          <view class="dot dot--white"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

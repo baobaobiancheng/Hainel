@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "src/pages/index/index",
+    "src/pages/consultation/consultation",
+    "src/pages/upload/upload",
+    "src/pages/reminders/reminders",
+    "src/pages/profile/profile",
+    "src/pages/login/login",
+    "src/pages/history/history",
+    "src/pages/reminder-form/reminder-form",
+    "src/pages/profile-edit/profile-edit",
+    "src/pages/health-profile/health-profile",
+    "src/pages/intake/intake",
+    "src/pages/change-password/change-password"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0B9480",
+    "navigationBarTitleText": "医疗健康咨询",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F2F6F5"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8AA4AC",
+    "selectedColor": "#0B9480",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "src/pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "src/pages/consultation/consultation",
+        "text": "咨询"
+      },
+      {
+        "pagePath": "src/pages/reminders/reminders",
+        "text": "提醒"
+      },
+      {
+        "pagePath": "src/pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
+

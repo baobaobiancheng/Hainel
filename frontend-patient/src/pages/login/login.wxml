@@ -1,0 +1,133 @@
+<!--pages/login/login.wxml-->
+<view class="page">
+
+  <!-- ── 品牌区 ── -->
+  <view class="brand">
+    <view class="brand-logo">
+      <view class="svg-icon svg-icon--xl svg-icon--medical brand-logo__icon"></view>
+    </view>
+    <text class="brand-title">医疗健康助手</text>
+    <text class="brand-sub">智能咨询 · 专业可靠</text>
+  </view>
+
+  <!-- ── 模式切换 ── -->
+  <view class="mode-switch">
+    <view
+      class="mode-tab {{mode === 'login' ? 'mode-tab--active' : ''}}"
+      bindtap="switchMode"
+      data-mode="login"
+    >登录</view>
+    <view
+      class="mode-tab {{mode === 'register' ? 'mode-tab--active' : ''}}"
+      bindtap="switchMode"
+      data-mode="register"
+    >注册</view>
+    <view class="mode-indicator" style="left: {{mode === 'login' ? '4rpx' : 'calc(50% + 4rpx)'}}"></view>
+  </view>
+
+  <!-- ── 表单区 ── -->
+  <view class="form-card card">
+
+    <!-- 注册专有：姓名 -->
+    <view class="form-item" wx:if="{{mode === 'register'}}">
+      <view class="form-item__icon-wrap">
+        <view class="svg-icon svg-icon--sm svg-icon--user form-item__icon"></view>
+      </view>
+      <input
+        class="form-item__input"
+        placeholder="真实姓名（选填）"
+        placeholder-class="form-placeholder"
+        value="{{form.fullName}}"
+        bindinput="onInput"
+        data-field="fullName"
+      />
+    </view>
+
+    <!-- 用户名 -->
+    <view class="form-item">
+      <view class="form-item__icon-wrap">
+        <view class="svg-icon svg-icon--sm svg-icon--phone form-item__icon"></view>
+      </view>
+      <input
+        class="form-item__input"
+        placeholder="手机号 / 用户名"
+        placeholder-class="form-placeholder"
+        value="{{form.username}}"
+        bindinput="onInput"
+        data-field="username"
+        type="text"
+        confirm-type="next"
+      />
+    </view>
+
+    <!-- 密码 -->
+    <view class="form-item">
+      <view class="form-item__icon-wrap">
+        <view class="svg-icon svg-icon--sm svg-icon--lock form-item__icon"></view>
+      </view>
+      <input
+        class="form-item__input"
+        placeholder="密码"
+        placeholder-class="form-placeholder"
+        value="{{form.password}}"
+        bindinput="onInput"
+        data-field="password"
+        password="{{!showPassword}}"
+        confirm-type="{{mode === 'register' ? 'next' : 'done'}}"
+        bindconfirm="{{mode === 'login' ? 'submit' : ''}}"
+      />
+      <view class="form-item__eye" bindtap="togglePassword">
+        <view wx:if="{{showPassword}}" class="svg-icon svg-icon--sm svg-icon--eye-off"></view>
+        <view wx:else class="svg-icon svg-icon--sm svg-icon--eye"></view>
+      </view>
+    </view>
+
+    <!-- 注册专有：确认密码 -->
+    <view class="form-item" wx:if="{{mode === 'register'}}">
+      <view class="form-item__icon-wrap">
+        <view class="svg-icon svg-icon--sm svg-icon--key form-item__icon"></view>
+      </view>
+      <input
+        class="form-item__input"
+        placeholder="确认密码"
+        placeholder-class="form-placeholder"
+        value="{{form.confirmPassword}}"
+        bindinput="onInput"
+        data-field="confirmPassword"
+        password="{{!showPassword}}"
+        confirm-type="done"
+        bindconfirm="submit"
+      />
+    </view>
+
+    <!-- 错误提示 -->
+    <view class="form-error" wx:if="{{errorMsg}}">
+      <view class="svg-icon svg-icon--sm svg-icon--warning form-error__icon"></view>
+      <text class="form-error__text">{{errorMsg}}</text>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button
+      class="btn-primary submit-btn"
+      bindtap="submit"
+      disabled="{{loading}}"
+    >
+      <text wx:if="{{!loading}}">{{mode === 'login' ? '登录' : '注册'}}</text>
+      <view class="loading-dots" wx:else>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+      </view>
+    </button>
+
+  </view>
+
+  <!-- ── 协议 ── -->
+  <view class="agreement">
+    <text class="agreement-text">登录即代表您已阅读并同意</text>
+    <text class="agreement-link" bindtap="showTerms">《用户服务协议》</text>
+    <text class="agreement-text">和</text>
+    <text class="agreement-link" bindtap="showPrivacy">《隐私政策》</text>
+  </view>
+
+</view>

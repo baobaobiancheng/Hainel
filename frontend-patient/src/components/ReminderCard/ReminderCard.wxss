@@ -1,0 +1,83 @@
+/* components/ReminderCard/ReminderCard.wxss */
+.reminder-card {
+  background: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.reminder-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.reminder-time {
+  font-size: 28rpx;
+  color: #4A90E2;
+  font-weight: bold;
+}
+
+.reminder-description {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.reminder-date {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.action-btn {
+  padding: 10rpx 20rpx;
+  margin-left: 10rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.complete-btn {
+  background: #4CAF50;
+  color: white;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.edit-btn {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.delete-btn {
+  background: #FFEBEE;
+  color: #F44336;
+}
+

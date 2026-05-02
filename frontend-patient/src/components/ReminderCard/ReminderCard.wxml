@@ -1,0 +1,43 @@
+<!--components/ReminderCard/ReminderCard.wxml-->
+<view class="reminder-card" bindtap="onTap">
+  <view class="card-content">
+    <view class="reminder-header">
+      <text class="reminder-title">{{reminder.title}}</text>
+      <text class="reminder-time">{{reminder.time}}</text>
+    </view>
+    
+    <text class="reminder-description" wx:if="{{reminder.description}}">
+      {{reminder.description}}
+    </text>
+    
+    <text class="reminder-date" wx:if="{{reminder.dateTime}}">
+      {{reminder.dateTime}}
+    </text>
+  </view>
+
+  <view class="card-actions" wx:if="{{showActions}}">
+    <view 
+      class="action-btn complete-btn"
+      wx:if="{{reminder.status === 'active'}}"
+      bindtap="onComplete"
+      catchtap="true"
+    >
+      <text>✓</text>
+    </view>
+    <view 
+      class="action-btn edit-btn"
+      bindtap="onEdit"
+      catchtap="true"
+    >
+      <text>编辑</text>
+    </view>
+    <view 
+      class="action-btn delete-btn"
+      bindtap="onDelete"
+      catchtap="true"
+    >
+      <text>删除</text>
+    </view>
+  </view>
+</view>
+

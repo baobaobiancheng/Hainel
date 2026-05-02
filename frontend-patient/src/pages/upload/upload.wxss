@@ -1,0 +1,255 @@
+/* pages/upload/upload.wxss */
+
+.page {
+  background: var(--c-bg);
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* ── 顶部 ── */
+.page-hd {
+  padding: 32rpx 28rpx 24rpx;
+}
+
+.page-hd__title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: var(--c-text);
+  display: block;
+  margin-bottom: 8rpx;
+  letter-spacing: -1rpx;
+}
+
+.page-hd__desc {
+  font-size: 26rpx;
+  color: var(--c-text-2);
+}
+
+/* ── 上传区域 ── */
+.upload-zone {
+  margin: 0 28rpx;
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  border: 3rpx dashed var(--c-primary-mid);
+  overflow: hidden;
+}
+
+.upload-zone__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+  transition: padding 0.3s;
+}
+
+.upload-zone__inner--small {
+  padding: 32rpx 40rpx;
+}
+
+.upload-zone__icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.upload-zone__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 12rpx;
+}
+
+.upload-zone__hint {
+  font-size: 24rpx;
+  color: var(--c-text-3);
+  text-align: center;
+}
+
+/* ── 快捷选择 ── */
+.quick-row {
+  display: flex;
+  gap: 20rpx;
+  margin: 24rpx 28rpx 0;
+}
+
+.quick-pick {
+  flex: 1;
+  background: var(--c-card);
+  border-radius: var(--r-md);
+  padding: 24rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-pick__icon { font-size: 40rpx; }
+.quick-pick__text { font-size: 24rpx; color: var(--c-text-2); }
+
+/* ── 文件列表 ── */
+.file-list {
+  margin: 28rpx 28rpx 0;
+}
+
+.file-list__hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.file-list__title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.file-list__count {
+  font-size: 24rpx;
+  color: var(--c-text-3);
+}
+
+.file-card {
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  gap: 20rpx;
+  margin-bottom: 16rpx;
+}
+
+/* 文件预览 */
+.file-card__preview {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--c-bg);
+}
+
+.file-preview-img {
+  width: 100%;
+  height: 100%;
+}
+
+.file-preview-pdf {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-accent-light);
+}
+
+.file-preview-pdf__icon { font-size: 36rpx; }
+.file-preview-pdf__ext  { font-size: 18rpx; font-weight: 700; color: var(--c-accent); text-transform: uppercase; }
+
+.file-card__info { flex: 1; overflow: hidden; }
+
+.file-card__name {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--c-text);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6rpx;
+}
+
+.file-card__meta {
+  font-size: 22rpx;
+  color: var(--c-text-3);
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+/* 进度 */
+.file-card__progress { display: flex; align-items: center; gap: 12rpx; }
+
+.progress-track {
+  flex: 1;
+  height: 8rpx;
+  background: var(--c-bg);
+  border-radius: 100rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--c-primary);
+  border-radius: 100rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text { font-size: 22rpx; color: var(--c-primary); font-weight: 600; }
+
+/* 删除 */
+.file-card__del {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: var(--c-danger-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: var(--c-danger);
+  flex-shrink: 0;
+}
+
+/* ── 类型选择 ── */
+.type-section {
+  margin: 28rpx 28rpx 0;
+}
+
+.type-section__label {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--c-text);
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.type-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.type-chip {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 16rpx 24rpx;
+  border-radius: var(--r-xl);
+  background: var(--c-card);
+  border: 2rpx solid var(--c-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.type-chip--active {
+  background: var(--c-primary-light);
+  border-color: var(--c-primary);
+}
+
+.type-chip--active .type-chip__label { color: var(--c-primary); font-weight: 600; }
+
+.type-chip__icon { font-size: 28rpx; }
+.type-chip__label { font-size: 26rpx; color: var(--c-text-2); }
+
+/* ── 提交 ── */
+.submit-area {
+  margin: 32rpx 28rpx 0;
+}
+
+.submit-btn {
+  width: 100%;
+  font-size: 32rpx;
+  padding: 30rpx;
+  letter-spacing: 2rpx;
+}

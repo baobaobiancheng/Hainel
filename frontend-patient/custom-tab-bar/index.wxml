@@ -1,0 +1,69 @@
+<!--custom-tab-bar/index.wxml-->
+<view class="tab-bar">
+  <view class="tab-bar__inner">
+    <view
+      class="tab-item {{selected === index ? 'tab-item--active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="path"
+      bindtap="switchTab"
+      data-path="{{item.path}}"
+      data-index="{{index}}"
+    >
+      <!-- SVG 图标区域 -->
+      <view class="tab-icon">
+        <!-- 首页 -->
+        <view wx:if="{{item.key === 'home'}}" class="svg-wrap">
+          <view class="svg-icon {{selected === index ? 'svg-icon--active' : ''}}">
+            <view class="icon-home">
+              <!-- 屋顶 -->
+              <view class="home-roof"></view>
+              <!-- 房身 -->
+              <view class="home-body">
+                <view class="home-door"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 咨询 -->
+        <view wx:if="{{item.key === 'chat'}}" class="svg-wrap">
+          <view class="svg-icon {{selected === index ? 'svg-icon--active' : ''}}">
+            <view class="icon-chat">
+              <view class="chat-bubble">
+                <view class="chat-dot"></view>
+                <view class="chat-dot"></view>
+                <view class="chat-dot"></view>
+              </view>
+              <view class="chat-tail"></view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 提醒 -->
+        <view wx:if="{{item.key === 'bell'}}" class="svg-wrap">
+          <view class="svg-icon {{selected === index ? 'svg-icon--active' : ''}}">
+            <view class="icon-bell">
+              <view class="bell-body"></view>
+              <view class="bell-clapper"></view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 我的 -->
+        <view wx:if="{{item.key === 'profile'}}" class="svg-wrap">
+          <view class="svg-icon {{selected === index ? 'svg-icon--active' : ''}}">
+            <view class="icon-profile">
+              <view class="profile-head"></view>
+              <view class="profile-body"></view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 活跃指示点 -->
+        <view class="active-dot" wx:if="{{selected === index}}"></view>
+      </view>
+
+      <text class="tab-label {{selected === index ? 'tab-label--active' : ''}}">{{item.text}}</text>
+    </view>
+  </view>
+</view>

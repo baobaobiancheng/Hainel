@@ -1,0 +1,132 @@
+<!--pages/reminders/reminders.wxml-->
+<view class="page">
+
+  <!-- ── 顶部头 ── -->
+  <view class="page-hd">
+    <text class="page-hd__title">用药提醒</text>
+    <view class="add-btn" bindtap="createReminder">
+      <text class="add-btn__icon">＋</text>
+      <text class="add-btn__text">添加</text>
+    </view>
+  </view>
+
+  <!-- ── 今日概览 ── -->
+  <view class="today-card">
+    <view class="today-card__row">
+      <text class="today-label">今日提醒</text>
+      <text class="today-date">{{todayStr}}</text>
+    </view>
+    <view class="today-stats">
+      <view class="today-stat">
+        <text class="today-stat__num today-stat__num--primary">{{todayTotal}}</text>
+        <text class="today-stat__label">全部</text>
+      </view>
+      <view class="today-stat">
+        <text class="today-stat__num today-stat__num--success">{{todayDone}}</text>
+        <text class="today-stat__label">已完成</text>
+      </view>
+      <view class="today-stat">
+        <text class="today-stat__num today-stat__num--warn">{{todayPending}}</text>
+        <text class="today-stat__label">待完成</text>
+      </view>
+    </view>
+    <view class="today-progress">
+      <view class="today-progress__bar" style="width: {{todayTotal > 0 ? (todayDone / todayTotal * 100) : 0}}%"></view>
+    </view>
+  </view>
+
+  <!-- ── 标签切换 ── -->
+  <view class="tabs-row">
+    <view
+      class="tab-pill {{activeTab === 'active' ? 'tab-pill--active' : ''}}"
+      bindtap="switchReminderFilter"
+      data-tab="active"
+    >进行中</view>
+    <view
+      class="tab-pill {{activeTab === 'completed' ? 'tab-pill--active' : ''}}"
+      bindtap="switchReminderFilter"
+      data-tab="completed"
+    >已完成</view>
+    <view
+      class="tab-pill {{activeTab === 'all' ? 'tab-pill--active' : ''}}"
+      bindtap="switchReminderFilter"
+      data-tab="all"
+    >全部</view>
+  </view>
+
+  <!-- ── 提醒列表 ── -->
+  <view class="reminder-list" wx:if="{{reminders.length > 0}}">
+    <view
+      class="reminder-card animate-in"
+      wx:for="{{reminders}}"
+      wx:key="id"
+      style="animation-delay: {{index * 0.06}}s"
+    >
+      <!-- 左侧类型色条 -->
+      <view class="reminder-card__stripe reminder-card__stripe--{{item.type}}"></view>
+
+      <view class="reminder-card__body">
+        <view class="reminder-card__top">
+          <view class="reminder-card__icon-wrap reminder-card__icon-wrap--{{item.type}}">
+            <view wx:if="{{item.type === 'medication'}}" class="svg-icon svg-icon--sm svg-icon--pill reminder-card__icon"></view>
+            <view wx:elif="{{item.type === 'checkup'}}" class="svg-icon svg-icon--sm svg-icon--flask reminder-card__icon"></view>
+            <view wx:elif="{{item.type === 'followup'}}" class="svg-icon svg-icon--sm svg-icon--refresh reminder-card__icon"></view>
+            <view wx:else class="svg-icon svg-icon--sm svg-icon--clock reminder-card__icon"></view>
+          </view>
+          <view class="reminder-card__info">
+            <text class="reminder-card__title">{{item.title}}</text>
+            <text class="reminder-card__desc" wx:if="{{item.description}}">{{item.description}}</text>
+          </view>
+          <view class="reminder-card__time-wrap">
+            <text class="reminder-card__time">{{item.timeStr}}</text>
+            <view class="status-dot status-dot--{{item.status}}"></view>
+          </view>
+        </view>
+
+        <!-- 标签行 -->
+        <view class="reminder-card__foot">
+          <view class="badge badge-{{item.status === 'active' ? 'active' : 'completed'}}">
+            <text wx:if="{{item.status === 'active'}}">进行中</text>
+            <text wx:else>已完成</text>
+          </view>
+          <text class="reminder-card__date">{{item.nextDateStr}}</text>
+        </view>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="reminder-card__actions">
+        <view
+          class="icon-btn icon-btn--success"
+          wx:if="{{item.status === 'active'}}"
+          bindtap="markComplete"
+          data-id="{{item.id}}"
+        >✓</view>
+        <view
+          class="icon-btn icon-btn--edit"
+          bindtap="editReminder"
+          data-id="{{item.id}}"
+        >✎</view>
+        <view
+          class="icon-btn icon-btn--delete"
+          bindtap="deleteReminder"
+          data-id="{{item.id}}"
+        >✕</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-wrap" wx:elif="{{!loading}}">
+    <view class="svg-icon svg-icon--2xl svg-icon--bell empty-icon"></view>
+    <text class="empty-title">暂无提醒</text>
+    <text class="empty-desc">添加用药提醒，按时服药不忘记</text>
+    <button class="btn-primary" style="margin-top: 32rpx; width: 240rpx;" bindtap="createReminder">添加提醒</button>
+  </view>
+
+  <!-- 加载 -->
+  <view class="loading-row" wx:if="{{loading}}">
+    <view class="loading-dots"><view class="dot"></view><view class="dot"></view><view class="dot"></view></view>
+  </view>
+
+  <view style="height: 80rpx;"></view>
+</view>

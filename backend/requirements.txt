@@ -1,0 +1,69 @@
+# FastAPI核心
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# 数据库
+sqlalchemy>=2.0.0
+pymysql>=1.1.0
+redis>=5.0.0
+
+# 认证和安全
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt==3.2.2  # 指定版本以兼容 passlib
+python-multipart>=0.0.6
+
+# AI和NLP
+langchain>=0.1.0
+langchain-community>=0.0.20
+transformers>=4.35.0
+torch>=2.1.0
+sentencepiece>=0.1.99
+# 向量存储（可选方案）
+# Chroma 向量数据库（纯本地，无需独立服务）
+chromadb>=0.4.0
+# LlamaIndex（支持多种数据源和本地 embedding）
+llama-index>=0.10.0
+# 本地 Embedding 模型（bge-m3，中文支持好，离线可用）
+sentence-transformers>=2.2.0
+# 支持的文件解析
+unstructured>=0.10.0
+python-docx>=1.1.0
+openpyxl>=3.1.0
+
+# FAISS 向量存储（如果使用 Faiss 作为备份）
+faiss-cpu>=1.7.4
+# pymilvus>=2.3.0  # Milvus向量数据库（可选，如果使用Milvus请取消注释）
+
+# 知识图谱
+neo4j>=5.14.0     # Neo4j Python 驱动
+
+# OCR
+dashscope>=1.14.0
+
+# PDF处理（使用pypdfium2，无需poppler）
+pypdfium2==5.5.0
+pypdf>=3.0.0
+
+# 异步任务
+celery>=5.3.0
+flower>=2.0.0
+
+# 工具库
+python-dotenv>=1.0.0
+httpx>=0.25.0
+aiofiles>=23.2.0
+phonenumbers>=8.13.0
+
+# 测试
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# 代码质量
+black>=23.11.0
+flake8>=6.1.0
+mypy>=1.7.0
+

@@ -1,0 +1,275 @@
+/* pages/reminders/reminders.wxss */
+
+.page {
+  background: var(--c-bg);
+  min-height: 100vh;
+}
+
+/* ── 顶部 ── */
+.page-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 28rpx 16rpx;
+}
+
+.page-hd__title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: var(--c-text);
+  letter-spacing: -1rpx;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: var(--c-primary);
+  border-radius: var(--r-xl);
+  padding: 14rpx 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(11, 148, 128, 0.3);
+}
+
+.add-btn__icon {
+  font-size: 32rpx;
+  color: #FFFFFF;
+  font-weight: 300;
+}
+
+.add-btn__text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* ── 今日概览卡片 ── */
+.today-card {
+  margin: 12rpx 28rpx 0;
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+  border-radius: var(--r-lg);
+  padding: 28rpx 32rpx;
+  box-shadow: var(--shadow-md);
+}
+
+.today-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.today-label {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+}
+
+.today-date {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.65);
+}
+
+.today-stats {
+  display: flex;
+  gap: 40rpx;
+  margin-bottom: 24rpx;
+}
+
+.today-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.today-stat__num {
+  font-size: 52rpx;
+  font-weight: 800;
+  letter-spacing: -2rpx;
+}
+.today-stat__num--primary { color: #FFFFFF; }
+.today-stat__num--success { color: #6EE7B7; }
+.today-stat__num--warn    { color: #FDE68A; }
+
+.today-stat__label {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4rpx;
+}
+
+/* 进度条 */
+.today-progress {
+  height: 8rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 100rpx;
+  overflow: hidden;
+}
+
+.today-progress__bar {
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  border-radius: 100rpx;
+  transition: width 0.5s ease;
+}
+
+/* ── 标签行 ── */
+.tabs-row {
+  display: flex;
+  gap: 16rpx;
+  padding: 28rpx 28rpx 12rpx;
+}
+
+.tab-pill {
+  padding: 14rpx 32rpx;
+  border-radius: var(--r-xl);
+  font-size: 26rpx;
+  font-weight: 500;
+  background: var(--c-card);
+  color: var(--c-text-2);
+  border: 1rpx solid var(--c-border);
+}
+
+.tab-pill--active {
+  background: var(--c-primary);
+  color: #FFFFFF;
+  border-color: var(--c-primary);
+  box-shadow: 0 4rpx 12rpx rgba(11, 148, 128, 0.25);
+}
+
+/* ── 提醒卡片 ── */
+.reminder-list {
+  padding: 0 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.reminder-card {
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.reminder-card__stripe {
+  width: 8rpx;
+  flex-shrink: 0;
+}
+.reminder-card__stripe--medication { background: var(--c-primary); }
+.reminder-card__stripe--checkup    { background: var(--c-accent); }
+.reminder-card__stripe--followup   { background: var(--c-pending); }
+.reminder-card__stripe--other      { background: var(--c-warning); }
+
+.reminder-card__body {
+  flex: 1;
+  padding: 24rpx 20rpx;
+  overflow: hidden;
+}
+
+.reminder-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.reminder-card__icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.reminder-card__icon-wrap--medication { background: var(--c-primary-light); }
+.reminder-card__icon-wrap--checkup    { background: var(--c-accent-light); }
+.reminder-card__icon-wrap--followup   { background: var(--c-pending-light); }
+.reminder-card__icon-wrap--other      { background: var(--c-warning-light); }
+
+.reminder-card__icon { font-size: 36rpx; }
+
+.reminder-card__info { flex: 1; overflow: hidden; }
+
+.reminder-card__title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--c-text);
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.reminder-card__desc {
+  font-size: 24rpx;
+  color: var(--c-text-2);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reminder-card__time-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.reminder-card__time {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: var(--c-text);
+  letter-spacing: -1rpx;
+}
+
+.status-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+}
+.status-dot--active    { background: var(--c-success); }
+.status-dot--completed { background: var(--c-text-3); }
+
+.reminder-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reminder-card__date {
+  font-size: 22rpx;
+  color: var(--c-text-3);
+}
+
+/* 操作按钮 */
+.reminder-card__actions {
+  display: flex;
+  flex-direction: column;
+  padding: 16rpx 12rpx;
+  gap: 12rpx;
+  justify-content: center;
+}
+
+.icon-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.icon-btn--success { background: var(--c-success-light); color: var(--c-success); }
+.icon-btn--edit    { background: var(--c-primary-light);  color: var(--c-primary); }
+.icon-btn--delete  { background: var(--c-danger-light);   color: var(--c-danger); }
+
+/* 加载行 */
+.loading-row {
+  display: flex;
+  justify-content: center;
+  padding: 60rpx;
+}

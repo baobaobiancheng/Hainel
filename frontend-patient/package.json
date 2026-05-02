@@ -1,0 +1,17 @@
+{
+  "name": "medical-patient-frontend",
+  "version": "1.0.0",
+  "description": "患者端小程序",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "npm run dev:mp-weixin",
+    "build": "npm run build:mp-weixin"
+  },
+  "keywords": [
+    "medical",
+    "miniprogram"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+

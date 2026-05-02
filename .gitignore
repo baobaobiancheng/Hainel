@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 环境变量
+.env
+.env.local
+
+# 日志
+*.log
+logs/
+
+# 数据库
+*.db
+*.sqlite
+
+# 测试
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 前端
+node_modules/
+dist/
+build/
+.DS_Store
+
+# 本地环境与大文件资源
+.venv/
+backend/.venv/
+backend/models/
+backend/nlp_models/
+backend/data/chroma_db/
+uploads/
+*.zip
+
+# 其他
+*.bak
+*.tmp
+

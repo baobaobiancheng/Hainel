@@ -1,0 +1,126 @@
+<!--pages/upload/upload.wxml-->
+<view class="page">
+
+  <!-- ── 标题区 ── -->
+  <view class="page-hd">
+    <text class="page-hd__title">上传报告</text>
+    <text class="page-hd__desc">支持图片、PDF格式，自动OCR识别</text>
+  </view>
+
+  <!-- ── 上传区 ── -->
+  <view class="upload-zone" bindtap="chooseFile">
+    <view class="upload-zone__inner {{files.length > 0 ? 'upload-zone__inner--small' : ''}}">
+      <view class="upload-zone__icon"><view class="svg-icon svg-icon--2xl svg-icon--upload"></view></view>
+      <text class="upload-zone__title">点击选择文件</text>
+      <text class="upload-zone__hint">支持 JPG、PNG、PDF（单文件最大10MB）</text>
+    </view>
+  </view>
+
+  <!-- 快捷选择按钮行 -->
+  <view class="quick-row">
+    <view class="quick-pick" bindtap="chooseAlbum">
+      <view class="svg-icon svg-icon--md svg-icon--gallery quick-pick__icon"></view>
+      <text class="quick-pick__text">从相册选</text>
+    </view>
+    <view class="quick-pick" bindtap="chooseFile">
+      <view class="svg-icon svg-icon--md svg-icon--file quick-pick__icon"></view>
+      <text class="quick-pick__text">选择文件</text>
+    </view>
+  </view>
+
+  <!-- ── 文件列表 ── -->
+  <view class="file-list" wx:if="{{files.length > 0}}">
+    <view class="file-list__hd">
+      <text class="file-list__title">待上传文件</text>
+      <text class="file-list__count">{{files.length}} 个</text>
+    </view>
+
+    <view
+      class="file-card animate-in"
+      wx:for="{{files}}"
+      wx:key="id"
+      style="animation-delay: {{index * 0.06}}s"
+    >
+      <!-- 预览区域 -->
+      <view class="file-card__preview" bindtap="previewFile" data-index="{{index}}">
+        <image
+          wx:if="{{item.isImage}}"
+          class="file-preview-img"
+          src="{{item.tempPath}}"
+          mode="aspectFill"
+        />
+        <view class="file-preview-pdf" wx:else>
+          <view class="svg-icon svg-icon--md svg-icon--file file-preview-pdf__icon"></view>
+          <text class="file-preview-pdf__ext">{{item.ext}}</text>
+        </view>
+      </view>
+
+      <!-- 信息区 -->
+      <view class="file-card__info">
+        <text class="file-card__name">{{item.name}}</text>
+        <text class="file-card__meta">{{item.sizeText}} · {{item.typeLabel}}</text>
+
+        <!-- 进度条 -->
+        <view class="file-card__progress" wx:if="{{item.status === 'uploading'}}">
+          <view class="progress-track">
+            <view class="progress-fill" style="width: {{item.progress}}%"></view>
+          </view>
+          <text class="progress-text">{{item.progress}}%</text>
+        </view>
+
+        <!-- 状态 -->
+        <view class="file-card__status" wx:else>
+          <view class="badge badge-active" wx:if="{{item.status === 'success'}}">
+            <text>✓ 上传成功</text>
+          </view>
+          <view class="badge badge-pending" wx:elif="{{item.status === 'pending'}}">
+            <text>待上传</text>
+          </view>
+          <view style="background:#FEE2E2;color:#EF4444;" class="badge" wx:elif="{{item.status === 'error'}}">
+            <text>上传失败</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 删除 -->
+      <view class="file-card__del" bindtap="deleteFile" data-index="{{index}}">
+        <text>✕</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ── 报告类型选择 ── -->
+  <view class="type-section" wx:if="{{files.length > 0}}">
+    <text class="type-section__label">报告类型</text>
+    <view class="type-grid">
+      <view
+        class="type-chip {{selectedType === item.value ? 'type-chip--active' : ''}}"
+        wx:for="{{reportTypes}}"
+        wx:key="value"
+        bindtap="selectType"
+        data-value="{{item.value}}"
+      >
+        <text class="type-chip__icon">{{item.icon}}</text>
+        <text class="type-chip__label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ── 提交区 ── -->
+  <view class="submit-area" wx:if="{{files.length > 0}}">
+    <button
+      class="btn-primary submit-btn"
+      bindtap="submitReport"
+      disabled="{{uploading || files.length === 0}}"
+    >
+      <text wx:if="{{!uploading}}">提交报告（{{files.length}}个）</text>
+      <view class="loading-dots" wx:else>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+        <view class="dot dot--white"></view>
+      </view>
+    </button>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

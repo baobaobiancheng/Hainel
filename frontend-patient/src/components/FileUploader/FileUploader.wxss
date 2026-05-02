@@ -1,0 +1,124 @@
+/* components/FileUploader/FileUploader.wxss */
+.file-uploader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.file-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.file-item {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.file-preview {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+  overflow: hidden;
+  background: #f5f5f5;
+  position: relative;
+}
+
+.file-image {
+  width: 100%;
+  height: 100%;
+}
+
+.file-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+}
+
+.file-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.file-overlay.error {
+  background: rgba(244, 67, 54, 0.8);
+}
+
+.progress-text {
+  font-size: 24rpx;
+  color: white;
+}
+
+.file-actions {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+}
+
+.delete-btn {
+  width: 40rpx;
+  height: 40rpx;
+  background: #F44336;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24rpx;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: #4A90E2;
+  transition: width 0.3s;
+}
+
+.add-button {
+  width: 200rpx;
+  height: 200rpx;
+  border: 2rpx dashed #ccc;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+
+.add-button.disabled {
+  opacity: 0.5;
+}
+
+.add-icon {
+  font-size: 60rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.add-text {
+  font-size: 24rpx;
+  color: #999;
+}
+

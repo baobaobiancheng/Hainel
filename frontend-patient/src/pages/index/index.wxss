@@ -1,0 +1,308 @@
+/* pages/index/index.wxss */
+
+.page {
+  background: var(--c-bg);
+  min-height: 100vh;
+}
+
+/* ── 英雄区 ── */
+.hero {
+  background: linear-gradient(140deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+  padding: 60rpx 36rpx 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 48rpx 48rpx;
+  box-shadow: 0 8rpx 32rpx rgba(11, 148, 128, 0.30);
+}
+
+.hero-bg-shape {
+  position: absolute;
+  top: -60rpx;
+  right: -60rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48rpx;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-greeting {
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1rpx;
+}
+
+.hero-name {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 6rpx 0 12rpx;
+  letter-spacing: 1rpx;
+}
+
+.hero-sub {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.65);
+}
+
+.hero-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3rpx solid rgba(255,255,255,0.4);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-char {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* 健康统计 */
+.health-stats {
+  display: flex;
+  background: rgba(255,255,255,0.14);
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 28rpx 20rpx;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -1rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6rpx;
+}
+
+.stat-sep {
+  width: 1rpx;
+  background: rgba(255,255,255,0.2);
+  margin: 8rpx 0;
+}
+
+/* ── 区域容器 ── */
+.section-wrap {
+  margin: 28rpx 28rpx 0;
+}
+
+/* ── 区域标题 ── */
+.section-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--c-text);
+  letter-spacing: 0.5rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: var(--c-primary);
+  font-weight: 500;
+}
+
+/* ── 快捷操作 ── */
+
+/* 主功能卡：全宽横向 */
+.qc-feat {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-mid) 100%);
+  border-radius: var(--r-lg);
+  padding: 32rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 6rpx 24rpx rgba(11, 148, 128, 0.35);
+}
+
+.qc-feat__icon-box {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 22rpx;
+  background: rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* SVG 内联图标：白色聊天气泡 */
+.qc-feat__svg {
+  width: 48rpx;
+  height: 48rpx;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.qc-feat__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.qc-feat__title {
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.5rpx;
+}
+
+.qc-feat__desc {
+  font-size: 23rpx;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+
+.qc-feat__arrow {
+  font-size: 52rpx;
+  color: rgba(255,255,255,0.8);
+  font-weight: 200;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ── 会话列表 ── */
+.conv-list {
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.conv-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 28rpx;
+  gap: 20rpx;
+  border-bottom: 1rpx solid var(--c-border-light);
+}
+
+.conv-item:last-child { border-bottom: none; }
+
+.conv-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.conv-dot--active    { background: var(--c-success); }
+.conv-dot--pending   { background: var(--c-warning); }
+.conv-dot--completed { background: var(--c-primary-mid); }
+.conv-dot--cancelled { background: #D1D5DB; }
+
+.conv-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.conv-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--c-text);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conv-preview {
+  font-size: 24rpx;
+  color: var(--c-text-3);
+  display: block;
+  margin-top: 6rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conv-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8rpx;
+  flex-shrink: 0;
+}
+
+.conv-time {
+  font-size: 22rpx;
+  color: var(--c-text-3);
+}
+
+/* ── 空状态 ── */
+.start-btn {
+  margin-top: 28rpx;
+  width: 240rpx;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+}
+
+/* ── 健康贴士 ── */
+.tip-card {
+  background: linear-gradient(135deg, var(--c-primary-xlight) 0%, #FFFFFF 100%);
+  border-radius: var(--r-lg);
+  padding: 28rpx;
+  display: flex;
+  align-items: flex-start;
+  gap: 24rpx;
+  border: 1rpx solid var(--c-primary-light);
+}
+
+.tip-icon { font-size: 48rpx; flex-shrink: 0; }
+
+.tip-body { display: flex; flex-direction: column; }
+
+.tip-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--c-primary-dark);
+  margin-bottom: 8rpx;
+}
+
+.tip-content {
+  font-size: 26rpx;
+  color: var(--c-text-2);
+  line-height: 1.6;
+}

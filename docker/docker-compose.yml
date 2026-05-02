@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # MySQL数据库
+  mysql:
+    image: mysql:8.0
+    container_name: medical_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: medical_db
+      MYSQL_USER: medical_user
+      MYSQL_PASSWORD: medical_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - medical_network
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: medical_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - medical_network
+
+  # 后端API服务
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.backend
+    container_name: medical_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://medical_user:medical_password@mysql:3306/medical_db
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ../backend:/app
+    networks:
+      - medical_network
+
+networks:
+  medical_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:
+
