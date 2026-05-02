@@ -60,6 +60,14 @@ backend/models/
 backend/nlp_models/
 backend/data/chroma_db/
 uploads/
+docs/
+模板/
+test_chroma/
+backend/.env
+backend/*.sqlite
+backend/*.db
+backend/=*
+=*
 *.zip
 
 # 其他

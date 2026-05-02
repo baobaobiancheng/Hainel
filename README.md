@@ -77,7 +77,6 @@
 │   └── pyproject.toml
 ├── frontend-doctor/         医生端管理后台
 ├── frontend-patient/        患者端小程序
-├── docs/                    项目文档与过程文档
 ├── uploads/                 上传文件目录（本地运行时生成/使用）
 └── README.md
 ```
@@ -204,9 +203,7 @@ pip install -r requirements.txt
 仓库提供了若干 SQL 文件：
 
 - [backend/init_database.sql](backend/init_database.sql)
-- [backend/add_health_profile.sql](backend/add_health_profile.sql)
-- [backend/fix_enum.sql](backend/fix_enum.sql)
-- [backend/seed_doctors.sql](backend/seed_doctors.sql)
+- [backend/init_database.sql](backend/init_database.sql)
 
 按你的数据库实际状态选择执行。
 
@@ -345,4 +342,4 @@ pytest tests/test_rl_pipeline.py
 
 ---
 
-如果你正在继续维护这个项目，建议把“环境准备文档”和“数据库初始化说明”单独拆到 `docs/` 里，再在 README 里只保留入口信息。
+如果你正在继续维护这个项目，建议把“环境准备文档”和“数据库初始化说明”放在本地文档目录中管理，再在 README 里只保留入口信息。

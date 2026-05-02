@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
     `id` INT AUTO_INCREMENT PRIMARY KEY COMMENT '主键ID',
     `conversation_id` INT NOT NULL COMMENT '会话ID',
     `user_id` INT NULL COMMENT '用户ID（发送者）',
-    `role` ENUM('user', 'assistant', 'system') NOT NULL COMMENT '消息角色：user/assistant/system',
+    `role` ENUM('USER', 'ASSISTANT', 'SYSTEM') NOT NULL COMMENT '消息角色：USER/ASSISTANT/SYSTEM',
     `message_type` ENUM('text', 'image', 'file', 'system') NOT NULL DEFAULT 'text' COMMENT '消息类型：text/image/file/system',
     `content` TEXT NOT NULL COMMENT '消息内容',
     `file_url` VARCHAR(500) NULL COMMENT '文件URL',
