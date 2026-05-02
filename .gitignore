@@ -59,7 +59,8 @@ backend/.venv/
 backend/models/
 backend/nlp_models/
 backend/data/chroma_db/
-uploads/
+uploads/*
+!uploads/.gitkeep
 docs/
 模板/
 test_chroma/
@@ -68,6 +69,9 @@ backend/*.sqlite
 backend/*.db
 backend/=*
 =*
+.claude/
+.cursor/
+.codex/skills/auto-push-after-change/
 *.zip
 
 # 其他
