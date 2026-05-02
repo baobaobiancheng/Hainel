@@ -77,7 +77,6 @@
 │   └── pyproject.toml
 ├── frontend-doctor/         医生端管理后台
 ├── frontend-patient/        患者端小程序
-├── docker/                  Docker 相关配置
 ├── docs/                    项目文档与过程文档
 ├── uploads/                 上传文件目录（本地运行时生成/使用）
 └── README.md
@@ -269,7 +268,6 @@ npm run dev
 
 Docker Compose 配置位于：
 
-- [docker/docker-compose.yml](docker/docker-compose.yml)
 
 当前 Compose 主要包含：
 
